@@ -12,7 +12,7 @@
 * This project purpose is to practise the use of recursion. This program outputs
 * every combination of prime numbers that after adding up will give the number of
 * imputed number. You also gives a paramter that will be the biggest prime number
-* that will be ouputed.
+* that will be ouputed. Number our program will be working on shouldnt exceed 256
 *
 * n=n1+n2+...+nr    =>  n1≥n2≥...≥nr
 *
@@ -40,16 +40,53 @@
 * 17+7+3
 *
 *==================================================================================*/
+#include "Header.h"
 
-#include <iostream>
-
+//this function returns a index of A variable in prime_array works like find
+int index_of_prime(int a) {
+    for (int i = 0; i < prime_array_size; i++) {
+        if (a == prime_array[i])
+            return i;
+        else if (a < prime_array[i]) {
+            throw(std::string("your data is not a prime number or is too big"));
+            return -1;
+        }
+    }
+    return -1;
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
-    int i;
-    std::cin >> i;
-    return 0;
+    int a, n, k;    
+    try
+    {
+        std::cin >> a;
+        for(int iterator=0;iterator<a;iterator++){
+            try {
+                for (int i = 0; i < a; i++)
+                {
+                    std::cin >> n; // number we will be spliting 
+                    std::cin >> k; // the biggest part of every way of decomposition our program makes
+                    std::cout << index_of_prime(n) << "<-index of number we will be splitting" << std::endl;
+                    std::cout << index_of_prime(n) << "<-index of the biggest part of that number " << std::endl;
+                }
+            }
+            catch (std::string problem)
+            {
+                std::cout << "program encoutered an error within component listed below:" << std::endl;
+                std::cout << problem << std::endl;
+            }
+            catch (...)
+            {
+                std::cout << "Program encountered an unhandled exception" << std::endl;
+                std::cout << "try again" << std::endl;
+            }
+        }
+    }
+    catch (...)
+    {
+        std::cout << "wrong starting number";
+    }
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
