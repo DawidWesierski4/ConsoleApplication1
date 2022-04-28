@@ -27,7 +27,7 @@
 * Example
 * Input-------
 * 2         #a
-* 5 2       #n k
+* 12 5      #n k
 * 27 17     #n k
 *
 * Output-----
@@ -42,7 +42,8 @@
 *==================================================================================*/
 #include "Header.h"
 
-//this function returns a index of A variable in prime_array works like find
+
+//this function returns a index of A variable in prime_array ... works like find basicly don't judge me 
 int index_of_prime(int a) {
     for (int i = 0; i < prime_array_size; i++) {
         if (a == prime_array[i])
@@ -54,6 +55,73 @@ int index_of_prime(int a) {
     }
     return -1;
 }
+
+void printing_arr(int* start, int* finish)
+{
+    if ((finish - start) > biggest_number_of_divisions ||
+        finish - start < 0)
+    {
+        throw(std::string("the pointer in the printing_arr function aren't pointing to the same array"));
+    }
+    while (start != finish)
+    {
+        std::cout << *start << " ";
+        start++;
+    }
+}
+
+
+void repetto(int n, int k, int* aux,int* root)
+{
+    if (k == 0)
+    {
+        printing_arr(root, aux);
+        while (n)
+        {
+            std::cout << "2" << " " << std::endl;
+            n -= 2;
+        }
+    }
+    else
+    {
+        if(n - prime_array[k] > 1)
+        {
+            *aux = prime_array[k];
+            repetto(n - prime_array[k], k, aux + 1, root);
+        }
+        else if (n - prime_array[k] == 0)
+        {
+            *aux = prime_array[k];
+            repetto(n - prime_array[k], 0, aux, root);
+        }
+        else
+        {
+            repetto(n, k--, aux, root);
+        }
+        
+    }
+}
+
+//this is main function it prints every combination of prime number that can be combined into the number 
+//input:    n-> prime number we will divide
+//          k-> index of the biggest component in prime_array_size array 
+void printing_parts(int n, int k)
+{
+    int* aux = new int[biggest_number_of_divisions];
+    aux[0] = prime_array[k];
+    for (int i = 0; i <= k; i++)
+    {
+        repetto(n, i, aux+1,aux);
+    }
+    
+
+    delete [] aux;
+}
+
+
+
+
+
 
 int main()
 {
@@ -67,8 +135,7 @@ int main()
                 {
                     std::cin >> n; // number we will be spliting 
                     std::cin >> k; // the biggest part of every way of decomposition our program makes
-                    std::cout << index_of_prime(n) << "<-index of number we will be splitting" << std::endl;
-                    std::cout << index_of_prime(n) << "<-index of the biggest part of that number " << std::endl;
+                    printing_parts(n, index_of_prime(k));
                 }
             }
             catch (std::string problem)
@@ -89,13 +156,3 @@ int main()
     }
 }
 
-// Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
-// Debugowanie programu: F5 lub menu Debugowanie > Rozpocznij debugowanie
-
-// Porady dotyczące rozpoczynania pracy:
-//   1. Użyj okna Eksploratora rozwiązań, aby dodać pliki i zarządzać nimi
-//   2. Użyj okna programu Team Explorer, aby nawiązać połączenie z kontrolą źródła
-//   3. Użyj okna Dane wyjściowe, aby sprawdzić dane wyjściowe kompilacji i inne komunikaty
-//   4. Użyj okna Lista błędów, aby zobaczyć błędy
-//   5. Wybierz pozycję Projekt > Dodaj nowy element, aby utworzyć nowe pliki kodu, lub wybierz pozycję Projekt > Dodaj istniejący element, aby dodać istniejące pliku kodu do projektu
-//   6. Aby w przyszłości ponownie otworzyć ten projekt, przejdź do pozycji Plik > Otwórz > Projekt i wybierz plik sln

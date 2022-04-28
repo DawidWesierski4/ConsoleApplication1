@@ -16,4 +16,6 @@ static int prime_array[] = { 2,  3,  5,  7, 11, 13, 17, 19, 23, 29,
 
 static int prime_array_size = sizeof(prime_array) / sizeof(prime_array[0]);
 
+static int biggest_number_of_divisions = prime_array[prime_array_size - 1] / prime_array[0] + 10;
+
 
