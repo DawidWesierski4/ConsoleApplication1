@@ -4,7 +4,7 @@
 * Author: Dawid Węsierski
 * Language: C++
 * To Compile: Microsoft Visual Studio Community 2022 (64-bit) Version 17.2
-* Version: 0.0.1
+* Version: 0.0.2
 * Date: 05.04.2022
 *
 * ----------------------------------------------------------------------------------
@@ -76,9 +76,14 @@ void repetto(int n, int k, int* aux,int* root)
     if (k == 0)
     {
         printing_arr(root, aux);
+        if (n % 2 != 3)
+        {
+            std::cout << "3" << " ";
+            n -= 3;
+        }
         while (n)
         {
-            std::cout << "2" << " " << std::endl;
+            std::cout << "2" << " " ;
             n -= 2;
         }
     }
@@ -98,9 +103,9 @@ void repetto(int n, int k, int* aux,int* root)
         {
             repetto(n, k--, aux, root);
         }
-        
     }
 }
+
 
 //this is main function it prints every combination of prime number that can be combined into the number 
 //input:    n-> prime number we will divide
@@ -111,16 +116,10 @@ void printing_parts(int n, int k)
     aux[0] = prime_array[k];
     for (int i = 0; i <= k; i++)
     {
-        repetto(n, i, aux+1,aux);
+        repetto(n-prime_array[k], i, aux + 1, aux);
     }
-    
-
     delete [] aux;
 }
-
-
-
-
 
 
 int main()
@@ -152,7 +151,7 @@ int main()
     }
     catch (...)
     {
-        std::cout << "wrong starting number";
+        std::cout << "unhandled expection";
     }
 }
 
