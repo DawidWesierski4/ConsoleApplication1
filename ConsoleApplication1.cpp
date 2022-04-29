@@ -4,7 +4,7 @@
 * Author: Dawid Węsierski
 * Language: C++
 * To Compile: Microsoft Visual Studio Community 2022 (64-bit) Version 17.2
-* Version: 0.0.3
+* Version: 0.0.4
 * Date: 05.04.2022
 *
 * ----------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ int index_of_prime(int a) {
 
 void printing_arr(int* start, int* finish)
 {
-    std::cout << std::endl;
+
     if ((finish - start) > biggest_number_of_divisions ||
         finish - start < 0)
     {
@@ -79,7 +79,7 @@ void repetto(int n, int k, int* aux,int* root)
     if (k == 0)
     {
         printing_arr(root, aux);
-        if (n % 2 != 3)
+        if (n % 2 != 0)
         {
             std::cout << "3" << " ";
             n -= 3;
@@ -89,6 +89,7 @@ void repetto(int n, int k, int* aux,int* root)
             std::cout << "2" << " " ;
             n -= 2;
         }
+        std::cout << std::endl;
     }
     else
     {
