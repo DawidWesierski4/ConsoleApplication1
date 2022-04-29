@@ -4,7 +4,7 @@
 * Author: Dawid Węsierski
 * Language: C++
 * To Compile: Microsoft Visual Studio Community 2022 (64-bit) Version 17.2
-* Version: 0.0.2
+* Version: 0.0.3
 * Date: 05.04.2022
 *
 * ----------------------------------------------------------------------------------
@@ -56,8 +56,10 @@ int index_of_prime(int a) {
     return -1;
 }
 
+
 void printing_arr(int* start, int* finish)
 {
+    std::cout << std::endl;
     if ((finish - start) > biggest_number_of_divisions ||
         finish - start < 0)
     {
@@ -68,6 +70,7 @@ void printing_arr(int* start, int* finish)
         std::cout << *start << " ";
         start++;
     }
+
 }
 
 
@@ -81,7 +84,7 @@ void repetto(int n, int k, int* aux,int* root)
             std::cout << "3" << " ";
             n -= 3;
         }
-        while (n)
+        while (n>0)
         {
             std::cout << "2" << " " ;
             n -= 2;
@@ -101,7 +104,7 @@ void repetto(int n, int k, int* aux,int* root)
         }
         else
         {
-            repetto(n, k--, aux, root);
+            repetto(n, k-1, aux, root);
         }
     }
 }
@@ -124,6 +127,8 @@ void printing_parts(int n, int k)
 
 int main()
 {
+    std::cout << biggest_number_of_divisions << " <-biggest_number_of_divisions" << std::endl;
+    std::cout << prime_array_size << " <-prime_array_size" << std::endl;
     int a, n, k;    
     try
     {
