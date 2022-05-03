@@ -4,7 +4,7 @@
 * Author: Dawid Węsierski
 * Language: C++
 * To Compile: Microsoft Visual Studio Community 2022 (64-bit) Version 17.2
-* Version: 0.0.4
+* Version: 0.1.0
 * Date: 05.04.2022
 *
 * ----------------------------------------------------------------------------------
@@ -93,19 +93,28 @@ void repetto(int n, int k, int* aux,int* root)
     }
     else
     {
-        if(n - prime_array[k] > 1)
+
+        if (n - prime_array[k] > 1)
         {
             *aux = prime_array[k];
-            repetto(n - prime_array[k], k, aux + 1, root);
+            n = -prime_array[k];
+            if (n % 2 == 0)
+            {
+                repetto(n, 0, aux + 1, root);
+            }
+            for(int i=1;i<=k;i++)
+            {
+                repetto(n, i, aux + 1, root);
+            }
         }
         else if (n - prime_array[k] == 0)
         {
             *aux = prime_array[k];
-            repetto(n - prime_array[k], 0, aux, root);
+            repetto(n - prime_array[k], 0, aux + 1, root);
         }
         else
         {
-            repetto(n, k-1, aux, root);
+            repetto(n, k - 1, aux, root);
         }
     }
 }
