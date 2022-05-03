@@ -4,7 +4,7 @@
 * Author: Dawid Węsierski
 * Language: C++
 * To Compile: Microsoft Visual Studio Community 2022 (64-bit) Version 17.2
-* Version: 0.1.1
+* Version: 0.1.2
 * Date: 05.04.2022
 *
 * ----------------------------------------------------------------------------------
@@ -43,8 +43,9 @@
 #include "Header.h"
 
 
-//this function returns a index of A variable in prime_array ... works like find basicly don't judge me 
-// in future meaby i will make it efficient but works for now /o=o\
+// this function returns a index of A variable in prime_array ... works like find basicly
+// don't judge me 
+// in future meaby i will make it efficient but works for now
 int index_of_prime(int a) {
     for (int i = 0; i < prime_array_size; i++) {
         if (a == prime_array[i])
@@ -75,6 +76,7 @@ void printing_arr(int* start, int* finish)
 }
 
 
+
 void repetto(int n, int k, int* aux,int* root)
 {
     if (k == 0)
@@ -99,10 +101,6 @@ void repetto(int n, int k, int* aux,int* root)
         {
             *aux = prime_array[k];
             n =n-prime_array[k];
-            if (n % 2 == 0)
-            {
-                repetto(n, 0, aux + 1, root);
-            }
             for(int i=1;i<=k;i++)
             {
                 repetto(n, i, aux + 1, root);
