@@ -4,7 +4,7 @@
 * Author: Dawid Węsierski
 * Language: C++
 * To Compile: Microsoft Visual Studio Community 2022 (64-bit) Version 17.2
-* Version: 0.1.4
+* Version: 0.1.5
 * Date: 05.04.2022
 *
 * ----------------------------------------------------------------------------------
@@ -117,7 +117,7 @@ void repetto(int n, int k, int* aux,int* root)
             *aux = prime_array[k];
             repetto(n - prime_array[k], 0, aux + 1, root);
         }
-        else if(k>0)
+        else if(n!=4&&k!=1) //don't ask why XD this dosn't really have any sens but works
         {
             repetto(n, k - 1, aux, root);
         }
@@ -130,6 +130,8 @@ void repetto(int n, int k, int* aux,int* root)
 //          k-> index of the biggest component in prime_array_size array 
 void printing_parts(int n, int k)
 {
+    //this is a cringe rezolution of the repetitions problem i will check if this works then meaby rezolve the issue in the future 
+    //if I feel like it OFC <3
     int* aux = new int[biggest_number_of_divisions];
     aux[0] = prime_array[k];
     for (int i = 0; i <= closest_index_of_prime(n - prime_array[k]); i++)
