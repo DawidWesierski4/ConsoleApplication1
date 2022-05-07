@@ -4,7 +4,7 @@
 * Author: Dawid Węsierski
 * Language: C++
 * To Compile: Microsoft Visual Studio Community 2022 (64-bit) Version 17.2
-* Version: 0.1.2
+* Version: 0.1.3
 * Date: 05.04.2022
 *
 * ----------------------------------------------------------------------------------
@@ -58,6 +58,16 @@ int index_of_prime(int a) {
     return -1;
 }
 
+// 
+int closest_index_of_prime(int a) {
+    for (int i = 0; i < prime_array_size; i++)
+    {
+        if (!(a > prime_array[i]))
+            return i-1;
+    }
+    throw(std::string("your data is esceding the maximum size of prime array"));
+}
+
 
 void printing_arr(int* start, int* finish)
 {
@@ -79,14 +89,9 @@ void printing_arr(int* start, int* finish)
 
 void repetto(int n, int k, int* aux,int* root)
 {
-    if (k == 0)
+    if (k == 0&&n%2==0)
     {
         printing_arr(root, aux);
-        if (n % 2 != 0)
-        {
-            std::cout << "3" << " ";
-            n -= 3;
-        }
         while (n>0)
         {
             std::cout << "2" << " " ;
@@ -97,7 +102,7 @@ void repetto(int n, int k, int* aux,int* root)
     else
     {
 
-        if (n - prime_array[k] > 1)
+        if (n - prime_array[k] > 1 )
         {
             *aux = prime_array[k];
             n =n-prime_array[k];
@@ -111,7 +116,7 @@ void repetto(int n, int k, int* aux,int* root)
             *aux = prime_array[k];
             repetto(n - prime_array[k], 0, aux + 1, root);
         }
-        else
+        else if(k>0)
         {
             repetto(n, k - 1, aux, root);
         }
@@ -126,11 +131,11 @@ void printing_parts(int n, int k)
 {
     int* aux = new int[biggest_number_of_divisions];
     aux[0] = prime_array[k];
-    for (int i = 0; i <= k; i++)
+    for (int i = 0; i <= closest_index_of_prime(n - prime_array[k]); i++)
     {
-        repetto(n-prime_array[k], i, aux + 1, aux);
+        repetto(n - prime_array[k], i, aux + 1, aux);
     }
-    delete [] aux;
+    delete[] aux;
 }
 
 
@@ -138,6 +143,13 @@ int main()
 {
     std::cout << biggest_number_of_divisions << " <-biggest_number_of_divisions" << std::endl;
     std::cout << prime_array_size << " <-prime_array_size" << std::endl;
+    /*
+    for (int i = 0; i < 100; i++)
+    {
+        std::cout << i << " <-i  " << closest_index_of_prime(i) << "  <-index   " << prime_array[closest_index_of_prime(i)] << std::endl;
+    }
+    */
+    /* TESTING */
     int a, n, k;    
     try
     {
@@ -167,5 +179,6 @@ int main()
     {
         std::cout << "unhandled expection";
     }
+    /* TESTING DONE */
 }
 
