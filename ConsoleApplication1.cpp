@@ -58,7 +58,7 @@ int index_of_prime(int a) {
     return -1;
 }
 
-// 
+// this function returns the closest bigger index of a number 
 int closest_index_of_prime(int a) {
     for (int i = 0; i < prime_array_size; i++)
     {
