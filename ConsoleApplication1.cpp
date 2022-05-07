@@ -4,7 +4,7 @@
 * Author: Dawid Węsierski
 * Language: C++
 * To Compile: Microsoft Visual Studio Community 2022 (64-bit) Version 17.2
-* Version: 0.1.3
+* Version: 0.1.4
 * Date: 05.04.2022
 *
 * ----------------------------------------------------------------------------------
@@ -18,9 +18,9 @@
 *
 * Imput:
 * 0 - int number the number of cases of the problem (called a later)
-* 1 - int number (later called n variable) thats the number we will be "spliting"
+* 1 - int number (later called n variable) thats the number we will be "spliting"ddddd
 * into the prime number
-* 2 - int number (later called k variable) thats the number that will be the biggest
+* 2 - int number (later called k variable) thats the number that will be the biggestasd
 * prime number that will be in the output ( ONE IS NOT A PRIME NUMBER)
 *
 * __________________________________________________________________________________
@@ -106,7 +106,7 @@ void repetto(int n, int k, int* aux,int* root)
         {
             *aux = prime_array[k];
             n =n-prime_array[k];
-            for(int i=1;i<=k;i++)
+            for(int i=0;(i<=k&&(n-prime_array[i]>=0)); i++)
             {
                 repetto(n, i, aux + 1, root);
             }
