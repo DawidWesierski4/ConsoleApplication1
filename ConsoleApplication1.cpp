@@ -4,7 +4,7 @@
 * Author: Dawid Węsierski
 * Language: C++
 * To Compile: Microsoft Visual Studio Community 2022 (64-bit) Version 17.2
-* Version: 0.1.7
+* Version: 0.1.8
 * Date: 05.04.2022
 *
 * ----------------------------------------------------------------------------------
@@ -140,9 +140,12 @@ void printing_parts(int n, int k)
     //if I feel like it OFC <3
     int* aux = new int[biggest_number_of_divisions];
     aux[0] = prime_array[k];
-    for (int i = 0; i <= closest_index_of_prime(n - prime_array[k]); i++)
+    for (int i = 0; i <= k; i++)
     {
-        repetto(n - prime_array[k], i, aux + 1, aux);
+        if (n - prime_array[k] - prime_array[i] >= 0)
+            repetto(n - prime_array[k], i, aux + 1, aux);
+        else
+            i = k;
     }
     delete[] aux;
 }
