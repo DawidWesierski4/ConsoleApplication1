@@ -46,6 +46,7 @@
 // this function returns a index of A variable in prime_array ... works like find basicly
 // don't judge me 
 // in future meaby i will make it efficient but works for now
+
 int index_of_prime(int a) {
     for (int i = 0; i < prime_array_size; i++) {
         if (a == prime_array[i])
@@ -58,8 +59,17 @@ int index_of_prime(int a) {
     return -1;
 }
 
+/*
+// this function returns a index of A variable in prime_array
+// binary search
+int index_of_prime(int a) {
+    
+}
+*/
+
 // this function returns the closest bigger index of a number 
 // you give the int number and you will get int as a result 
+
 int closest_index_of_prime(int a) {
     for (int i = 0; i < prime_array_size; i++)
     {
@@ -68,6 +78,9 @@ int closest_index_of_prime(int a) {
     }
     throw(std::string("your data is esceding the maximum size of prime array"));
 }
+
+
+
 
 
 void printing_arr(int* start, int* finish)
@@ -106,7 +119,7 @@ void repetto(int n, int k, int* aux, int* root)
         }
         std::cout << std::endl;
     }
-    else
+    else  if(k>0)
     {
 
         if (n - prime_array[k] > 1)
@@ -118,12 +131,12 @@ void repetto(int n, int k, int* aux, int* root)
                 repetto(n, i, aux + 1, root);
             }
         }
-        else if (n - prime_array[k] == 0)
+        else if ( n - prime_array[k] == 0)
         {
             *aux = prime_array[k];
             repetto(n - prime_array[k], 0, aux + 1, root);
         }
-        else if (n != 4 && k != 1) //don't ask why XD this dosn't really have any sens but works
+        else if (n != 4 && k != 1 && root-aux>1) //don't ask why XD this dosn't really have any sens but works
         {
             repetto(n, k - 1, aux, root);
         }
@@ -140,7 +153,7 @@ void printing_parts(int n, int k)
     //if I feel like it OFC <3
     int* aux = new int[biggest_number_of_divisions];
     aux[0] = prime_array[k];
-    for (int i = 0; i <= k; i++)
+    for (int i = 0; i <= k ; i++)
     {
         if (n - prime_array[k] - prime_array[i] >= 0)
             repetto(n - prime_array[k], i, aux + 1, aux);
@@ -173,8 +186,13 @@ int main()
                 {
                     std::cin >> n; // number we will be spliting 
                     std::cin >> k; // the biggest part of every way of decomposition our program makes
-                    if (index_of_prime(k) > 0)
-                        printing_parts(n, index_of_prime(k));
+                    if (index_of_prime(k) >= 0)
+                    {
+                        if (n == k)
+                            std::cout << n << std::endl;
+                        else
+                            printing_parts(n, index_of_prime(k));
+                    }
                 }
             }
             catch (std::string problem)
